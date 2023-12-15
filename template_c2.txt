@@ -1,0 +1,99 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+[Route("api/[${EntityName}]")]
+[ApiController]
+public class ${ControllerName} : ControllerBase
+{
+    private readonly AppDbContext _context;
+
+    public ${ControllerName}(AppDbContext context)
+    {
+        _context = context;
+    }
+
+    // GET: api/Persons
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<${ClassName}>>> Get${ClassName}()
+    {
+        return await _context.${ClassName}.ToListAsync();
+    }
+
+    // GET: api/Persons/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<${ClassName}>> Get${ClassName}(int id)
+    {
+        var ${EntityName} = await _context.${ClassName}.FindAsync(id);
+
+        if (${ClassName} == null)
+        {
+            return NotFound();
+        }
+
+        return ${EntityName};
+    }
+
+    // POST: api/Persons
+    [HttpPost]
+    public async Task<ActionResult<${ClassName}>> Post${ClassName}(${ClassName} ${EntityName})
+    {
+        _context.${ClassName}.Add(${EntityName});
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction("Get${ClassName}", new { id = ${EntityName}.Id }, ${EntityName});
+    }
+
+    // PUT: api/Persons/5
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put${ClassName}(int id, ${ClassName} ${EntityName})
+    {
+        if (id != ${EntityName}.Id)
+        {
+            return BadRequest();
+        }
+
+        _context.Entry(${EntityName}).State = EntityState.Modified;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!${ClassName}Exists(id))
+            {
+                return NotFound();
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        return NoContent();
+    }
+
+    // DELETE: api/Persons/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete${ClassName}(int id)
+    {
+        var ${EntityName} = await _context.${ClassName}.FindAsync(id);
+        if (${EntityName} == null)
+        {
+            return NotFound();
+        }
+
+        _context.${ClassName}.Remove(${EntityName});
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    private bool ${ClassName}Exists(int id)
+    {
+        return _context.${ClassName}.Any(e => e.Id == id);
+    }
+}

@@ -1,0 +1,19 @@
+<config>
+    <!-- JAVA ou C# -->
+    <language>C#</language>
+    <base>
+        <!-- postgres ou mysql -->
+        <serveur>postgres</serveur>
+        <database>stock</database>
+        <table>*</table>
+        <user>postgres</user>
+        <password>N0tah1na</password>
+    </base>
+    <paths>
+        <path>E:/s5/Numero1/Panneau/src/java/mapping</path>
+        <package>temporaire</package>
+        <template>template.txt</template>
+        <template_c>template_c2.txt</template_c>
+        <outputDirectory>generated/</outputDirectory>
+    </paths>
+</config>

@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Users/andriniaina/Jar/postgresql-42.3.7.jar",
+        "/Users/andriniaina/Jar/com.mysql.jdbc_5.1.5.jar"
+    ]
+}

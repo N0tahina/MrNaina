@@ -1,0 +1,7 @@
+packaging templatepackage;
+importing
+public class template{
+    Type fields 
+    public constructor(){} 
+    //getter//setter
+}
